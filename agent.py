@@ -1,22 +1,30 @@
 import psutil
+import os
+import socket
+import json
 
-class psUtil():
+class Psutil():
     def __init__(self):
         self.data = []
 
     def _get_process_if(self):
         None
-    
-    def getinfo(self):
-        #Disk
-        diskUse = psutil.disk_usage('/')
-        Info = {}
-        Info['disk'] = {'used' : diskUse[1], 'free' :diskUse[2]}
-        print Info 
 
-    def publish(self):
+    def getInfo(self):
+        Info = {}
+
+        Info['nomHost'] = socket.gethostname()
+
+        disk = psutil.disk_usage('/')
+        Info['disk'] = json.dumps(disk)
+
+        Info['OS'] = os.name
+
+        return Info
+
+    def publish():
         None
- 
+
 if __name__ == '__main__':
-    self = psUtil()
-    self.getinfo()
+    self = Psutil()
+    self.getInfo()
