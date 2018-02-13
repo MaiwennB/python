@@ -1,7 +1,7 @@
 import mysql.connector 
 from agent import Psutil
 
-connection = mysql.connector.connect(host="localhost",user="root",password="", database="python")
+connection = mysql.connector.connect(host="localhost",user="root",password="root", database="python")
 cursor = connection.cursor()
 
 
@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS infosPC (
 );
 """)
 
-#insérer des données
-#info = {"nomHost": "PC1", "disk": "3564879", "OS": "windows"}
-#cursor.execute("""INSERT INTO infosPC (nomHost, disk, OS) VALUES(%(nomHost)s, %(disk)s, %(OS)s)""", info)
+# insérer des données
+# info = {"nomHost": "PC1", "disk": "3564879", "OS": "windows"}
+# cursor.execute("""INSERT INTO infosPC (nomHost, disk, OS) VALUES(%(nomHost)s, %(disk)s, %(OS)s)""", info)
 
 info = Psutil()
 infoPC = info.getInfo()
