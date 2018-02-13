@@ -24,10 +24,12 @@
         .attr('class', 'list-group-item active')
         .append($('<h4>')
             .attr('class', 'list-group-item-heading'),
-            $('<p1>')
+            $('<p>')
             .attr('class', 'list-group-item-text').attr('id', 'p1'),
                 $('<p>')
-                .attr('class', 'list-group-item-text').attr('id', 'p2')));
+                .attr('class', 'list-group-item-text').attr('id', 'p2')),
+            $('</div>')
+            .append($('</br>')));
                 var infoh = '';
                 $.each(infoObj,function(index, value){
 					info = $(div).clone();
