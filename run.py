@@ -1,5 +1,5 @@
 # TO RUN THE SERVER
-#  $ export FLASK_APP=run.py
+# $ export FLASK_APP=run.py
 # $ flask run
 import mysql.connector
 from flask import Flask, render_template, jsonify
@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/",methods=['GET'])
 def main():
     return render_template('index.html')
-@app.route("/test",methods=['GET'])
+@app.route("/get",methods=['GET'])
 def getinfo():
     connection = mysql.connector.connect(host="localhost",user="root",password="root", database="python")
     cursor = connection.cursor()
