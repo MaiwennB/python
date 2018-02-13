@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS infosPC (
     nomHost varchar(255) DEFAULT NULL,
     disk varchar(255) DEFAULT NULL,
     OS varchar(255) DEFAULT NULL,
+    CPU_STAT varchar(255) DEFAULT NULL,
     PRIMARY KEY(id)
 );
 """)
@@ -25,13 +26,13 @@ CREATE TABLE IF NOT EXISTS infosPC (
 info = Psutil()
 infoPC = info.getInfo()
 print infoPC
-cursor.execute("""INSERT INTO infosPC (nomHost, disk, OS) VALUES(%(nomHost)s, %(disk)s, %(OS)s)""", infoPC)
+cursor.execute("""INSERT INTO infosPC (nomHost, disk, OS, CPU_STAT) VALUES(%(nomHost)s, %(disk)s, %(OS)s, %(CPU_STAT)s)""", infoPC)
 
 #affichage des données
 cursor.execute("""SELECT * FROM infosPC""")
 rows = cursor.fetchall()
 for row in rows:
-    print('{0} : {1} - {2} - {3}'.format(row[0], row[1], row[2], row[3]))
+    print('{0} : {1} - {2} - {3} - {4}'.format(row[0], row[1], row[2], row[3], row[4]))
 
 connection.commit()
 

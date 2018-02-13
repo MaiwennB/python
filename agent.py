@@ -22,6 +22,9 @@ class Psutil():
 
         Info['OS'] = os.name
 
+        cpu_stats = psutil.cpu_stats()
+        Info['CPU_STAT'] = json.dump(cpu_stats)
+
         return Info
 
     def publish():
