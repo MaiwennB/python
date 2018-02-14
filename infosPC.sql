@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 14 Février 2018 à 00:59
+-- Généré le :  Mer 14 Février 2018 à 03:11
 -- Version du serveur :  5.7.21-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
@@ -40,10 +40,11 @@ CREATE TABLE `infosPC` (
 
 INSERT INTO `infosPC` (`id`, `nomHost`, `disk`, `OS`, `CPU_STAT`) VALUES
 (1, 'PC1', '[13604339712, 8145350656, 4744335360, 63.2]', 'windows', NULL),
-(2, 'PC2', '[96280129536,13072621,648,14.3]', 'windows', NULL),
+(2, 'PC2', '[96280129536, 13072621, 6480000, 14.3]', 'windows', NULL),
 (3, 'rt-VirtualBox', '[13604339712, 8145350656, 4744335360, 63.2]', 'posix', NULL),
-(4, 'elo-X55OLD', '[96280129536,13072621,648,14.3]', 'posix', '[13740295, 33324573, 2219808, 0]'),
-(5, 'rt-VirtualBox', '[13604339712, 8176062464, 4713623552, 63.4]', 'posix', '[54786159, 5438516, 2496946, 0]');
+(4, 'elo-X55OLD', '[96280129536,13072621,6480000,14.3]', 'posix', '[13740295, 33324573, 2219808, 0]'),
+(5, 'rt-VirtualBox', '[13604339712, 8176062464, 4713623552, 63.4]', 'posix', '[54786159, 5438516, 2496946, 0]'),
+(6, 'rt-VirtualBox', '[13604339712, 8180330496, 4709355520, 63.5]', 'posix', '[75052744, 7425843, 3413823, 0]');
 
 --
 -- Index pour les tables exportées
@@ -63,7 +64,7 @@ ALTER TABLE `infosPC`
 -- AUTO_INCREMENT pour la table `infosPC`
 --
 ALTER TABLE `infosPC`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

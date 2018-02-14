@@ -13,8 +13,9 @@ def main():
 def getinfo():
     connection = mysql.connector.connect(host="localhost",user="root",password="root", database="python")
     cursor = connection.cursor()
-    cursor.execute("""SELECT id, nomHost, disk, OS, CPU_STAT FROM infosPC""")
+    cursor.execute("""SELECT * FROM `infosPC` Where id = (SELECT Max(id) FROM `infosPC` )""")
     info = cursor.fetchall()
     return jsonify(info)
+    
 if __name__ == "__main__":
     app.run()

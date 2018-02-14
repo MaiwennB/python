@@ -9,7 +9,7 @@
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <script>
     $(function() {
@@ -18,28 +18,53 @@
             type: 'GET',
             success: function(obj) {
                 var infoObj = obj;
+                // HTML POUR CHAQUE ITEM DU JSON 
                 var div = $('<div>')
-    .attr('class', 'list-group')
-    .append($('<a>')
-        .attr('class', 'list-group-item active')
-        .append($('<h4>')
-            .attr('class', 'list-group-item-heading'),
-            $('<p>')
-            .attr('class', 'list-group-item-text').attr('id', 'p1'),
-                $('<p>')
-                .attr('class', 'list-group-item-text').attr('id', 'p2'),
-                    $('<p>')
-                    .attr('class', 'list-group-item-text').attr('id', 'p3')),
-            $('</div>')
-            .append($('</br>')));
+                            .attr('class', 'list-group')
+                            .append($('<a>')
+                                .attr('class', 'list-group-item active')
+                                .append($('<h4>')
+                                    .attr('class', 'list-group-item-heading'),
+                                    /*$('<p>')
+                                    .attr('class', 'list-group-item-text').attr('id', 'p1'),*/
+                                        $('<p>')
+                                        .attr('class', 'list-group-item-text').attr('id', 'p2'),
+                                            $('<p>')
+                                            .attr('class', 'list-group-item-text').attr('id', 'p3')),
+                                    $('<div class="donut"></div>')
+                                    .append($('</br>')));
+
+                google.charts.load("current",{packages:["corechart"]});
+
                 var infoh = '';
                 $.each(infoObj,function(index, value){
 					info = $(div).clone();
 					$(info).find('h4').text("Nom host :" + value[1]);
-					$(info).find('#p1').text("Espace disk : (total, used, free , percent)" + value[2]);
+					//$(info).find('#p1').text("Espace disk : (total, used, free , percent)" + value[2]);
                     $(info).find('#p2').text("OS : " + value[3]);
+                    $(info).find('.donut').append($('<div id="'+value[0]+'_Donut" style="width:500px; height:250px">'));
                     $(info).find('#p3').text("Statistiques CPU : " + value[4]);
-					$('.jumbotron').append(info);
+					
+                    // POUR LE GRAPHIQUE DE L4UTILISATION DE L4ESPACE DISK
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart(){
+                    var disk = value[2].split(',');
+                    var data = google.visualization.arrayToDataTable([
+                        ['Task','Disk'],
+                        ['used',parseFloat(disk[1])],
+                        ['free',parseFloat(disk[2])]
+                    ]);
+                    var option = {
+                        title : 'Espace disk',
+                        pieHole: 0.4
+                    };
+                    var chart = new google.visualization.PieChart(document.getElementById(value[0]+"_Donut"));
+                    chart.draw(data, option);
+                    }
+
+                    $('.jumbotron').append(info);
+                    
+
 				});
                 console.log(infoObj);
             },
@@ -60,7 +85,6 @@
             <div class="col-lg-12">
                 <h4>Info by psUtil</h4>
                 <div class="jumbotron"></div>
-                
             </div>
         
         </div>
