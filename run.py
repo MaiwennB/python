@@ -13,7 +13,7 @@ def main():
 def getinfo():
     connection = mysql.connector.connect(host="localhost",user="root",password="root", database="python")
     cursor = connection.cursor()
-    cursor.execute("""SELECT id, nomHost, disk, OS FROM infosPC""")
+    cursor.execute("""SELECT id, nomHost, disk, OS, CPU_STAT FROM infosPC""")
     info = cursor.fetchall()
     return jsonify(info)
 if __name__ == "__main__":

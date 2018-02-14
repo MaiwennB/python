@@ -27,7 +27,9 @@
             $('<p>')
             .attr('class', 'list-group-item-text').attr('id', 'p1'),
                 $('<p>')
-                .attr('class', 'list-group-item-text').attr('id', 'p2')),
+                .attr('class', 'list-group-item-text').attr('id', 'p2'),
+                    $('<p>')
+                    .attr('class', 'list-group-item-text').attr('id', 'p3')),
             $('</div>')
             .append($('</br>')));
                 var infoh = '';
@@ -36,6 +38,7 @@
 					$(info).find('h4').text("Nom host :" + value[1]);
 					$(info).find('#p1').text("Espace disk : (total, used, free , percent)" + value[2]);
                     $(info).find('#p2').text("OS : " + value[3]);
+                    $(info).find('#p3').text("Statistiques CPU : " + value[4]);
 					$('.jumbotron').append(info);
 				});
                 console.log(infoObj);
